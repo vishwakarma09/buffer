@@ -1,5 +1,6 @@
+import { Injectable } from "@nestjs/common";
 import { ApiProperty, ApiTags } from "@nestjs/swagger";
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, DeleteDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @ApiTags('user')
 @Entity('user')
@@ -51,4 +52,10 @@ export class User extends BaseEntity {
         name: 'password',
     })
     password: string;
+
+    @DeleteDateColumn({
+        name: 'deleted_at',
+        default: null,
+    })
+    deletedAt: Date;
 }
